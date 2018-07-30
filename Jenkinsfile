@@ -75,7 +75,7 @@ node ('buildnode') {
         }
       }
       finally {
-        archiveArtifacts allowEmptyArchive: true, fingerprint: true, artifacts: 'toolchain/check-clang-gcc.log, toolchain/test-output/gcc.{sum,log}'
+        archiveArtifacts allowEmptyArchive: true, fingerprint: true, artifacts: 'toolchain/check-clang-gcc.log, toolchain/test-output/gcc.sum, toolchain/test-output/gcc.log'
       }
     }
   }
