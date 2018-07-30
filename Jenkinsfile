@@ -70,7 +70,7 @@ node ('buildnode') {
       try {
         docker.image('embecosm/buildenv').inside {
           dir('toolchain') {
-            sh '''PATH=${WORKSPACE}/install-master/bin:$PATH ./run-tests.py' 2>&1 | tee "${WORKSPACE}/toolchain/check-clang-gcc.log" || true'''
+            sh '''PATH=${WORKSPACE}/install-master/bin:$PATH ./run-tests.py 2>&1 | tee "${WORKSPACE}/toolchain/check-clang-gcc.log" || true'''
           }
         }
       }
