@@ -52,7 +52,7 @@ node ('buildnode') {
     }
   }
   stage('LLVM regression') {
-    timeout(60) {
+    timeout(90) {
       try {
         docker.image('embecosm/buildenv').inside {
           dir('bd-master/llvm') {
