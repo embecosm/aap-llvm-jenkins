@@ -1,3 +1,13 @@
+// Specify parameters to configure which repo and branch to build
+properties([parameters([
+           string(defaultValue: 'embecosm/aap-llvm', description: 'LLVM Github Repo Name', name: 'LLVMRepoName'),
+           string(defaultValue: 'aap-master', description: 'LLVM Branch Name', name: 'LLVMBranchName'),
+           string(defaultValue: 'embecosm/aap-clang', description: 'Clang Github Repo Name', name: 'ClangRepoName'),
+           string(defaultValue: 'aap-master', description: 'Clang Branch Name', name: 'ClangBranchName'),
+           string(defaultValue: 'embecosm/aap-compiler-rt', description: 'Compiler RT Github Repo Name', name: 'CompilerRTRepoName'),
+           string(defaultValue: 'aap-master', description: 'Compiler RT Branch Name', name: 'CompilerRTBranchName'),
+])])
+
 node ('buildnode') {
   // Cleanup previous build and log files
   stage('Cleanup') {
@@ -17,16 +27,16 @@ node ('buildnode') {
         git url: 'https://github.com/embecosm/aap-binutils-gdb', branch: 'aap-master'
       }
       dir('compiler-rt') {
-        git url: 'https://github.com/embecosm/aap-compiler-rt', branch: 'aap-master'
+        git url: 'https://github.com/' + '${CompilerRTRepoName}' + '.git', branch: '${CompilerRTBranchName}'
       }
       dir('newlib') {
         git url: 'https://github.com/embecosm/aap-newlib', branch: 'aap-master'
       }
       dir('clang') {
-        git url: 'https://github.com/embecosm/aap-clang.git', branch: 'aap-master'
+        git url: 'https://github.com/' + '${ClangRepoName}' + '.git', branch: '${ClangBranchName}'
       }
       dir('llvm') {
-        git url: 'https://github.com/embecosm/aap-llvm.git', branch: 'aap-master'
+        git url: 'https://github.com/' + '${LLVMRepoName}' + '.git', branch: '${LLVMBranchName}'
         sh 'cd tools && ln -sf ../../clang'
       }
 
